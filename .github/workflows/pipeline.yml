@@ -14,5 +14,6 @@ jobs:
       gpg_key_id: 33261F4E1EF30BC3
       gpg_public_key: incus-2036-09-25.asc
       gpg_public_keyring: incus-2036-09-25.gpg
+      build_with_published_repository: true
       publish: ${{ github.ref == 'refs/heads/production' }}
     secrets: inherit
