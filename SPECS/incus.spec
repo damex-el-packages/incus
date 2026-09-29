@@ -41,6 +41,7 @@ Recommends: lvm2
 Recommends: xfsprogs
 Recommends: zfs
 BuildRequires: golang >= 1.26.0, golang < 1.27.0
+BuildRequires: go-rpm-macros
 BuildRequires: cowsql-devel
 BuildRequires: libacl-devel
 BuildRequires: libcap-devel
@@ -84,14 +85,15 @@ in a public cloud environment. This package contains the virtual machine guest a
 
 %build
 export GOFLAGS=-buildvcs=false
+export GO111MODULE=on
 export CGO_LDFLAGS_ALLOW="(-Wl,-wrap,pthread_create)|(-Wl,-z,now)"
 go mod download
-go build -tags libsqlite3 -o $(pwd)/incusd ./cmd/incusd
-go build -tags libsqlite3 -o $(pwd)/incus-user ./cmd/incus-user
-go build -o $(pwd)/incus ./cmd/incus
-go build -o $(pwd)/fuidshift ./cmd/fuidshift
-go build -o $(pwd)/incus-benchmark ./cmd/incus-benchmark
-go build -o $(pwd)/lxc-to-incus ./cmd/lxc-to-incus
+BUILDTAGS=libsqlite3 %gobuild -o $(pwd)/incusd ./cmd/incusd
+BUILDTAGS=libsqlite3 %gobuild -o $(pwd)/incus-user ./cmd/incus-user
+%gobuild -o $(pwd)/incus ./cmd/incus
+%gobuild -o $(pwd)/fuidshift ./cmd/fuidshift
+%gobuild -o $(pwd)/incus-benchmark ./cmd/incus-benchmark
+%gobuild -o $(pwd)/lxc-to-incus ./cmd/lxc-to-incus
 CGO_ENABLED=0 go build -tags netgo -o $(pwd)/incus-migrate ./cmd/incus-migrate
 GOARCH=amd64 CGO_ENABLED=0 go build -tags "agent,netgo" -o $(pwd)/incus-agent.linux.x86_64 ./cmd/incus-agent
 GOARCH=386 CGO_ENABLED=0 go build -tags "agent,netgo" -o $(pwd)/incus-agent.linux.i686 ./cmd/incus-agent
