@@ -5,7 +5,7 @@ Name: incus
 Version: 7.5.1
 Release: 2%{?dist}
 Summary: powerful system container and virtual machine manager
-License: ASL 2.0
+License: Apache-2.0
 URL: https://linuxcontainers.org/incus
 Source: https://linuxcontainers.org/downloads/%{name}/%{name}-%{version}.tar.xz
 %{?systemd_requires}

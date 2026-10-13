@@ -6,7 +6,7 @@ Name: lxc
 Version: 7.0.0
 Release: 2%{?dist}
 Summary: Linux Resource Containers
-License: LGPLv2.1+
+License: LGPL-2.1-or-later AND GPL-2.0-only
 URL: https://linuxcontainers.org/lxc
 Source: https://linuxcontainers.org/downloads/%{name}/%{name}-%{version}.tar.gz
 BuildRequires: gcc-c++
