@@ -91,8 +91,9 @@ export GOFLAGS=-buildvcs=false
 export GO111MODULE=on
 export CGO_LDFLAGS_ALLOW="(-Wl,-wrap,pthread_create)|(-Wl,-z,now)"
 go mod download
-GO_BUILDTAGS=libsqlite3 %gobuild -o $(pwd)/incusd ./cmd/incusd
-GO_BUILDTAGS=libsqlite3 %gobuild -o $(pwd)/incus-user ./cmd/incus-user
+export GO_BUILDTAGS=libsqlite3
+%gobuild -o $(pwd)/incusd ./cmd/incusd
+%gobuild -o $(pwd)/incus-user ./cmd/incus-user
 %gobuild -o $(pwd)/incus ./cmd/incus
 %gobuild -o $(pwd)/fuidshift ./cmd/fuidshift
 %gobuild -o $(pwd)/incus-benchmark ./cmd/incus-benchmark
