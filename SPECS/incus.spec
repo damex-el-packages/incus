@@ -6,7 +6,8 @@ Release: 2%{?dist}
 Summary: powerful system container and virtual machine manager
 License: Apache-2.0
 URL: https://linuxcontainers.org/incus
-Source: https://linuxcontainers.org/downloads/%{name}/%{name}-%{version}.tar.xz
+Source0: https://linuxcontainers.org/downloads/%{name}/%{name}-%{version}.tar.xz
+Source1: https://linuxcontainers.org/downloads/%{name}/%{name}-%{version}.tar.xz.asc
 %{?systemd_requires}
 Requires(pre): shadow-utils
 Requires: %{name}-client = %{version}-%{release}
@@ -41,6 +42,7 @@ Recommends: xfsprogs
 Recommends: zfs
 BuildRequires: golang >= 1.26.0, golang < 1.27.0
 BuildRequires: go-rpm-macros
+BuildRequires: gnupg2
 BuildRequires: cowsql-devel
 BuildRequires: libacl-devel
 BuildRequires: libcap-devel
@@ -80,6 +82,7 @@ along with very flexible networking and storage akin to what's offered
 in a public cloud environment. This package contains the virtual machine guest agent.
 
 %prep
+%{gpgverify} --keyring='%{_topdir}/upstream.asc' --signature='%{SOURCE1}' --data='%{SOURCE0}'
 %autosetup
 
 %build

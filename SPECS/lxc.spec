@@ -7,8 +7,10 @@ Release: 2%{?dist}
 Summary: Linux Resource Containers
 License: LGPL-2.1-or-later AND GPL-2.0-only
 URL: https://linuxcontainers.org/lxc
-Source: https://linuxcontainers.org/downloads/%{name}/%{name}-%{version}.tar.gz
+Source0: https://linuxcontainers.org/downloads/%{name}/%{name}-%{version}.tar.gz
+Source1: https://linuxcontainers.org/downloads/%{name}/%{name}-%{version}.tar.gz.asc
 BuildRequires: gcc-c++
+BuildRequires: gnupg2
 BuildRequires: dbus-devel
 BuildRequires: libcap-devel
 BuildRequires: libseccomp-devel
@@ -49,6 +51,7 @@ Development headers and pkg-config files for building against liblxc.
 Templates for creating LXC containers.
 
 %prep
+%{gpgverify} --keyring='%{_topdir}/upstream.asc' --signature='%{SOURCE1}' --data='%{SOURCE0}'
 %autosetup
 
 %build

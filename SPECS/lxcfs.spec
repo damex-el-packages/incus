@@ -7,8 +7,10 @@ Release: 1%{?dist}
 Summary: FUSE filesystem for containers
 License: LGPL-2.1-or-later
 URL: https://linuxcontainers.org/lxcfs
-Source: https://linuxcontainers.org/downloads/%{name}/%{name}-%{version}.tar.gz
+Source0: https://linuxcontainers.org/downloads/%{name}/%{name}-%{version}.tar.gz
+Source1: https://linuxcontainers.org/downloads/%{name}/%{name}-%{version}.tar.gz.asc
 BuildRequires: gcc
+BuildRequires: gnupg2
 BuildRequires: fuse3-devel
 BuildRequires: meson
 BuildRequires: python3-jinja2
@@ -21,6 +23,7 @@ LXCFS is a small FUSE filesystem that makes Linux containers feel more
 like a virtual machine by providing container-aware /proc and /sys values.
 
 %prep
+%{gpgverify} --keyring='%{_topdir}/upstream.asc' --signature='%{SOURCE1}' --data='%{SOURCE0}'
 %autosetup
 
 %build
