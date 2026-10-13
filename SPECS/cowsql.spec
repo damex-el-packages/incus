@@ -1,6 +1,5 @@
 %define debug_package %{nil}
 %global _build_id_links none
-%undefine source_date_epoch_from_changelog
 
 Name: cowsql
 Version: 1.15.9
