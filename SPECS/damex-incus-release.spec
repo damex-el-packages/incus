@@ -1,6 +1,4 @@
 %define debug_package %{nil}
-%define disttype %{expand:%%(/usr/lib/rpm/redhat/dist.sh --disttype)}
-%define distnum %{expand:%%(/usr/lib/rpm/redhat/dist.sh --distnum)}
 
 Name: damex-incus-release
 Version: 0.2.0
@@ -8,6 +6,7 @@ Release: 1%{?dist}
 Summary: damex incus repository configuration
 License: MIT
 URL: https://yum-repositories.damex.org
+BuildArch: noarch
 
 %description
 
@@ -17,10 +16,10 @@ URL: https://yum-repositories.damex.org
 
 %install
 %{__install} -d %{buildroot}%{_sysconfdir}/yum.repos.d
-cat <<EOF > %{buildroot}%{_sysconfdir}/yum.repos.d/damex-incus.repo
+cat <<'EOF' > %{buildroot}%{_sysconfdir}/yum.repos.d/damex-incus.repo
 [damex-incus]
 name = damex-incus
-baseurl = https://yum-repositories.damex.org/incus/%{disttype}/%{distnum}/%{_arch}
+baseurl = https://yum-repositories.damex.org/incus/el/$releasever/$basearch
 gpgcheck = 1
 repo_gpgcheck = 1
 gpgkey = https://yum-repositories.damex.org/incus/incus-2036-09-25.asc
