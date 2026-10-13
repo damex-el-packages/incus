@@ -9,6 +9,7 @@ License: LGPL-2.1-or-later AND GPL-2.0-only
 URL: https://linuxcontainers.org/lxc
 Source0: https://linuxcontainers.org/downloads/%{name}/%{name}-%{version}.tar.gz
 Source1: https://linuxcontainers.org/downloads/%{name}/%{name}-%{version}.tar.gz.asc
+Source2: %{name}.keyring
 BuildRequires: gcc-c++
 BuildRequires: gnupg2
 BuildRequires: dbus-devel
@@ -51,7 +52,7 @@ Development headers and pkg-config files for building against liblxc.
 Templates for creating LXC containers.
 
 %prep
-%{gpgverify} --keyring='%{_topdir}/upstream.asc' --signature='%{SOURCE1}' --data='%{SOURCE0}'
+%{gpgverify -k2 -s1 -d0}
 %autosetup
 
 %build

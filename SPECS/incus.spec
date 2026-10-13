@@ -8,6 +8,7 @@ License: Apache-2.0
 URL: https://linuxcontainers.org/incus
 Source0: https://linuxcontainers.org/downloads/%{name}/%{name}-%{version}.tar.xz
 Source1: https://linuxcontainers.org/downloads/%{name}/%{name}-%{version}.tar.xz.asc
+Source2: %{name}.keyring
 %{?systemd_requires}
 Requires(pre): shadow-utils
 Requires: %{name}-client = %{version}-%{release}
@@ -82,7 +83,7 @@ along with very flexible networking and storage akin to what's offered
 in a public cloud environment. This package contains the virtual machine guest agent.
 
 %prep
-%{gpgverify} --keyring='%{_topdir}/upstream.asc' --signature='%{SOURCE1}' --data='%{SOURCE0}'
+%{gpgverify -k2 -s1 -d0}
 %autosetup
 
 %build
