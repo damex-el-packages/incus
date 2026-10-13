@@ -333,3 +333,7 @@ fi
 %{_datadir}/incus/agent/incus-agent.windows.aarch64
 %{_datadir}/incus/agent/incus-agent.macos.x86_64
 %{_datadir}/incus/agent/incus-agent.macos.aarch64
+
+%changelog
+* %(date -u +"%%a %%b %%d %%Y") Roman Kuzmitskii <el-packages@damex.org> - %{version}-%{release}
+- History: https://github.com/damex-el-packages/incus/commits/production

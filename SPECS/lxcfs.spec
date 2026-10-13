@@ -61,3 +61,7 @@ like a virtual machine by providing container-aware /proc and /sys values.
 %dir %{_datadir}/lxc/config/common.conf.d
 %{_datadir}/lxc/config/common.conf.d/00-lxcfs.conf
 %dir %{_sharedstatedir}/%{name}
+
+%changelog
+* %(date -u +"%%a %%b %%d %%Y") Roman Kuzmitskii <el-packages@damex.org> - %{version}-%{release}
+- History: https://github.com/damex-el-packages/incus/commits/production

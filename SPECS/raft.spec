@@ -56,3 +56,7 @@ autoreconf -i
 %{_includedir}/raft/uv.h
 %{_libdir}/libraft.so
 %{_libdir}/pkgconfig/%{name}.pc
+
+%changelog
+* %(date -u +"%%a %%b %%d %%Y") Roman Kuzmitskii <el-packages@damex.org> - %{version}-%{release}
+- History: https://github.com/damex-el-packages/incus/commits/production

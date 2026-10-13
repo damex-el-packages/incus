@@ -53,3 +53,7 @@ autoreconf -i
 %{_includedir}/cowsql.h
 %{_libdir}/libcowsql.so
 %{_libdir}/pkgconfig/%{name}.pc
+
+%changelog
+* %(date -u +"%%a %%b %%d %%Y") Roman Kuzmitskii <el-packages@damex.org> - %{version}-%{release}
+- History: https://github.com/damex-el-packages/incus/commits/production

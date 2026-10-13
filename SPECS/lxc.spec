@@ -213,3 +213,7 @@ Templates for creating LXC containers.
 %{_datadir}/%{name}/config/nesting.conf
 %{_datadir}/%{name}/config/oci.common.conf
 %{_datadir}/%{name}/config/userns.conf
+
+%changelog
+* %(date -u +"%%a %%b %%d %%Y") Roman Kuzmitskii <el-packages@damex.org> - %{version}-%{release}
+- History: https://github.com/damex-el-packages/incus/commits/production
