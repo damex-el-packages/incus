@@ -16,7 +16,7 @@ BuildArch: noarch
 
 %install
 %{__install} -d %{buildroot}%{_sysconfdir}/yum.repos.d
-cat <<'EOF' > %{buildroot}%{_sysconfdir}/yum.repos.d/damex-incus.repo
+%{__cat} <<'EOF' > %{buildroot}%{_sysconfdir}/yum.repos.d/damex-incus.repo
 [damex-incus]
 name = damex-incus
 baseurl = https://yum-repositories.damex.org/incus/el/$releasever/$basearch

@@ -127,7 +127,7 @@ GOARCH=arm64 GOOS=darwin CGO_ENABLED=0 go build -tags "agent,netgo" -o $(pwd)/in
 %{__install} -m 755 incus-agent.windows.aarch64 %{buildroot}%{_datadir}/incus/agent/incus-agent.windows.aarch64
 %{__install} -m 755 incus-agent.macos.x86_64 %{buildroot}%{_datadir}/incus/agent/incus-agent.macos.x86_64
 %{__install} -m 755 incus-agent.macos.aarch64 %{buildroot}%{_datadir}/incus/agent/incus-agent.macos.aarch64
-cat <<EOF > %{buildroot}%{_unitdir}/incus.socket
+%{__cat} <<EOF > %{buildroot}%{_unitdir}/incus.socket
 [Unit]
 Description=Incus - Container and Virtual Machine Manager (unix socket)
 
@@ -140,7 +140,7 @@ Service=incus.service
 [Install]
 WantedBy=sockets.target
 EOF
-cat <<EOF > %{buildroot}%{_unitdir}/incus.service
+%{__cat} <<EOF > %{buildroot}%{_unitdir}/incus.service
 [Unit]
 Description=Incus - Container and Virtual Machine Manager
 After=network-online.target incus.socket
@@ -171,7 +171,7 @@ WantedBy=multi-user.target
 Also=incus.socket
 Also=incus-startup.service
 EOF
-cat <<EOF > %{buildroot}%{_unitdir}/incus-startup.service
+%{__cat} <<EOF > %{buildroot}%{_unitdir}/incus-startup.service
 [Unit]
 Description=Incus - Container and Virtual Machine Manager (Startup)
 After=incus.socket incus.service
@@ -188,7 +188,7 @@ RemainAfterExit=yes
 [Install]
 WantedBy=multi-user.target
 EOF
-cat <<EOF > %{buildroot}%{_unitdir}/incus-user.socket
+%{__cat} <<EOF > %{buildroot}%{_unitdir}/incus-user.socket
 [Unit]
 Description=Incus - Container and Virtual Machine Manager (User unix socket)
 
@@ -201,7 +201,7 @@ Service=incus-user.service
 [Install]
 WantedBy=sockets.target
 EOF
-cat <<EOF > %{buildroot}%{_unitdir}/incus-user.service
+%{__cat} <<EOF > %{buildroot}%{_unitdir}/incus-user.service
 [Unit]
 Description=Incus - Container and Virtual Machine Manager (User)
 After=incus.service
@@ -220,30 +220,30 @@ Slice=incus.slice
 WantedBy=multi-user.target
 Also=incus-user.socket
 EOF
-cat <<EOF > %{buildroot}%{_sysconfdir}/default/incus
+%{__cat} <<EOF > %{buildroot}%{_sysconfdir}/default/incus
 ARGUMENTS="--group incus-admin"
 INCUS_AGENT_PATH=%{_datadir}/incus/agent
 EOF
-cat <<EOF > %{buildroot}%{_sysconfdir}/default/incus-user
+%{__cat} <<EOF > %{buildroot}%{_sysconfdir}/default/incus-user
 ARGUMENTS="--group incus"
 EOF
-cat <<EOF > %{buildroot}%{_sysconfdir}/dnsmasq.d/incus.conf
+%{__cat} <<EOF > %{buildroot}%{_sysconfdir}/dnsmasq.d/incus.conf
 except-interface=incusbr0
 EOF
 %{__install} -d %{buildroot}%{_sysusersdir}
-cat <<EOF > %{buildroot}%{_sysusersdir}/incus.conf
+%{__cat} <<EOF > %{buildroot}%{_sysusersdir}/incus.conf
 g incus-admin -
 u incus - "Incus daemon user" %{_sharedstatedir}/incus /sbin/nologin
 EOF
 %{__install} -d %{buildroot}%{_tmpfilesdir}
-cat <<EOF > %{buildroot}%{_tmpfilesdir}/incus.conf
+%{__cat} <<EOF > %{buildroot}%{_tmpfilesdir}/incus.conf
 d /var/cache/incus 0700 root root - -
 d /var/log/incus 0700 root root - -
 d /var/lib/incus 0711 root root - -
 d /run/incus 0711 root root - -
 EOF
 %{__install} -d %{buildroot}%{_sysctldir}
-cat <<EOF > %{buildroot}%{_sysctldir}/10-incus-inotify.conf
+%{__cat} <<EOF > %{buildroot}%{_sysctldir}/10-incus-inotify.conf
 fs.aio-max-nr = 16777216
 fs.inotify.max_queued_events = 1048576
 fs.inotify.max_user_instances = 1048576
