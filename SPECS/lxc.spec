@@ -22,7 +22,7 @@ BuildRequires: openssl-devel
 BuildRequires: pam-devel
 BuildRequires: systemd-devel
 Requires: %{name}-libs%{?_isa} = %{version}-%{release}
-Requires: %{name}-templates%{?_isa} = %{version}-%{release}
+Requires: %{name}-templates = %{version}-%{release}
 
 %package -n %{name}-libs
 Summary: runtime library files for LXC
@@ -35,7 +35,8 @@ Requires: %{name}-libs%{?_isa} = %{version}-%{release}
 
 %package -n %{name}-templates
 Summary: templates for %{name}
-Requires: %{name}-libs%{?_isa} = %{version}-%{release}
+BuildArch: noarch
+Requires: %{name}-libs = %{version}-%{release}
 
 %description
 Linux Resource Containers provide process and resource isolation without the
