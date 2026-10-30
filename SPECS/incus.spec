@@ -1,8 +1,8 @@
 %define debug_package %{nil}
 
 Name: incus
-Version: 7.5.1
-Release: 2%{?dist}
+Version: 7.6
+Release: 1%{?dist}
 Summary: powerful system container and virtual machine manager
 License: Apache-2.0
 URL: https://linuxcontainers.org/incus
